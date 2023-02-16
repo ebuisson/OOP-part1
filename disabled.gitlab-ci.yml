@@ -1,4 +1,0 @@
-include:
-  - project: 'distrinet/education/ogp/meta/ci-resources'
-    file:
-    - '/scripts/breakout-iter1.yml'
