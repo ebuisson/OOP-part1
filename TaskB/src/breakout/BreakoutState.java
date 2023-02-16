@@ -176,7 +176,7 @@ public class BreakoutState {
 	 * TODO
 	 */
 	private Ball removeDead(Ball ball) {
-
+		return null;
 	}
 
 	/**
@@ -350,13 +350,13 @@ public class BreakoutState {
 	 * TODO
 	 */
 	public boolean isWon() {
-
+		return true;
 	}
 
 	/**
 	 * TODO
 	 */
 	public boolean isDead() {
-
+		return true;
 	}
 }

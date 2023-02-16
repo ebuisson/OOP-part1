@@ -19,14 +19,15 @@ public class Circle {
 	 * TODO
 	 */
 	public Circle(Point center, int diameter) {
-
+		this.center = null;
+		this.diameter = 0;
 	}
 	
 	/**
 	 * TODO
 	 */
 	public Point getCenter() {
-		
+		return null;
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class Circle {
 	 * TODO
 	 */ 
 	public int getDiameter() {
-		
+		return 0;
 	}
 
 	/**
@@ -120,7 +121,7 @@ public class Circle {
 	 * TODO
 	 */
 	public Circle withCenter(Point c) {
-
+		return null;
 	}
 	
 	@Override

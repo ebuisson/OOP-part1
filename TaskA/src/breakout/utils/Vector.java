@@ -20,7 +20,8 @@ public class Vector {
 	 * TODO
 	 */
 	public Vector(int x, int y) {
-		
+		this.x = 0;
+		this.y = 0;
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class Vector {
 	 * TODO
 	 */
 	public Vector scaled(int factor) {
-
+		return null;
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class Vector {
 	 * TODO
 	 */
 	public Vector plus(Vector other) { 
-		
+		return null;
 	}
 
 	/**

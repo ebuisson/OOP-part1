@@ -18,14 +18,14 @@ public class BlockState {
 	 * TODO
 	 */
 	public BlockState(Rect location) {
-
+		this.location = null;
 	}
 
 	/**
 	 * TODO
 	 */
 	public Rect getLocation() {
-
+		return null;
 	}
 	
 }

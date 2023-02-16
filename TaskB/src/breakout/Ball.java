@@ -161,4 +161,13 @@ public class Ball {
 	public Ball reproduce() {
 		return new Ball( getLocation() , getVelocity() );
 	}
+	
+	/**
+	 * to demonstrate how you should write tests in TaskBTestSuite
+	 * @post | result == 35
+	 */
+	public int dummy() {
+		return 127;
+	}
+	
 }
