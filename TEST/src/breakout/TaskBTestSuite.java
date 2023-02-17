@@ -21,7 +21,7 @@ import breakout.utils.*;
 /**
  * Those tests should fail on the provided bad implementaiton, succeed on the model solution.
  */
-class TaskBTestSuiteTemplate {
+class TaskBTestSuite {
 	
 
 	private Point BR;
