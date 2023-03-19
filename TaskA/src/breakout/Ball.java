@@ -13,7 +13,7 @@ import breakout.utils.Vector;
  */
 public class Ball {
 	
-	/*
+	/**
 	 * @invar | location != null
 	 * @invar | velocity != null
 	 */
@@ -54,7 +54,7 @@ public class Ball {
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
 	
-
+	//incorrectly implemented
 	public void move(Vector v) {
 		if (v == null) {
 			velocity = new Vector(-velocity.getX(), velocity.getY());

@@ -3,6 +3,7 @@ package breakout.utils;
 /**
  * Represents a 2-dimensional integer vector. 
  *
+ * @immutable
  */
 public class Vector {
 
