@@ -105,7 +105,7 @@ public class BreakoutState {
 	/**
 	 * Return the blocks of this BreakoutState. 
 	 *
-	 * @creates result
+	 * @creates | result
 	 */
 	public BlockState[] getBlocks() {
 		return blocks;
@@ -233,8 +233,8 @@ public class BreakoutState {
 	 * @pre | elapsedTime >= 0
 	 * @pre | elapsedTime <= Constants.MAX_ELAPSED_TIME
 	 * 
-	 * @mutates this
-	 * @mutates ...getBalls()
+	 * @mutates | this
+	 * @mutates | ...getBalls()
 	 */
 	public void tick(int paddleDir, int elapsedTime) {
 		stepBalls(elapsedTime); //move balls
