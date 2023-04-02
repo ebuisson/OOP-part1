@@ -10,7 +10,7 @@ import breakout.utils.Point;
 import breakout.utils.Rect;
 import breakout.utils.Vector;
 
-
+//Defensive programming in the breakoutstate constructor
 
 /**
  * Represents the current state of a breakout.good game.
@@ -161,10 +161,10 @@ public class BreakoutState {
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {
 			boolean res = ball.hitRect(wall);
-			if (res) {
-				int newX = bottomRight.getX() / 2;
-				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
-			}
+//			if (res) {
+//				//int newX = bottomRight.getX() / 2;
+//				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+//			}
 		}
 	}
 	
@@ -173,10 +173,16 @@ public class BreakoutState {
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
 	 * 
-	 * TODO
+	 * @pre | ball != null
+	 * @post | result == null || result == ball
 	 */
 	private Ball removeDead(Ball ball) {
-		return null;
+		if (ball.getLocation().getBottommostPoint().getY() > bottomRight.getY()) {
+			return null;
+		}
+		else {
+			return ball;
+		}
 	}
 
 	/**
@@ -191,23 +197,29 @@ public class BreakoutState {
 		for (BlockState block : blocks) {
 			boolean res = ball.hitRect( block.getLocation() );
 			if (res) {
-				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
-					movePaddleRight(200);
-				}
-				else {
-					movePaddleLeft(200);
-				}
+//				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
+//					movePaddleRight(200);
+//				}
+//				else {
+//					movePaddleLeft(200);
+//				}
 				removeBlock(block);
 			}
 		}
 	}
 
 	/**
+	 * If ball collides with paddle, velocity of ball is reflected horizontally.
 	 * TODO
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-		//...
+//		if (changed) {
+//			Vector test = new Vector (0,0);
+//			Vector newvelocity = ball.getVelocity().mirrorOver(test);
+//			ball.setVelocity(newvelocity);
+//		}
+		
 	}
 
 	/**
@@ -348,15 +360,19 @@ public class BreakoutState {
 
 	/**
 	 * TODO
+	 * @post | result == (getBlocks().length == 0 && !isDead())
+	 * @inspects this
 	 */
 	public boolean isWon() {
-		return true;
+		return getBlocks().length == 0 && !isDead();
 	}
 
 	/**
 	 * TODO
+	 * @post | result == (getBalls().length == 0)
+	 * @inspects this
 	 */
 	public boolean isDead() {
-		return true;
+		return getBalls().length == 0;
 	}
 }

@@ -13,7 +13,7 @@ public class Constants {
 	public static final Point ORIGIN = new Point(0,0);
 	
 	//paddle dims, speed
-	public static Vector PADDLE_VEL = new Vector(15, 0);
+	public static Vector PADDLE_VEL = new Vector(20, 0); //changed from 15
 	public static final int PADDLE_HEIGHT = 500;
 	public static final int PADDLE_WIDTH = 3000;
 	
