@@ -63,7 +63,6 @@ public class Vector {
 
 	/**
 	 * Returns this vector multiplied by a given factor 
-	 * 
 	 * TODO
 	 * @post | result != null
 	 * @post | result.getX() == getX() * factor
@@ -80,7 +79,6 @@ public class Vector {
 	 * @post | result != null
 	 * @post | result.getX() == getX() + other.getX()
 	 * @post | result.getY() == getY() + other.getY()
-	 * 
 	 */
 	public Vector plus(Vector other) { 
 		return new Vector(x + other.x, y + other.y);

@@ -5,8 +5,6 @@ import breakout.utils.Point;
 import breakout.utils.Rect;
 import breakout.utils.Vector;
 
-//Ball constructor needs defensive programming
-
 /**
  * Represents the state of a ball in the breakout game.
  * 
@@ -57,27 +55,15 @@ public class Ball {
 	}
 	
 	//incorrectly implemented
-//	public void move(Vector v) {
-//		if (v == null) {
-//			velocity = new Vector(-velocity.getX(), velocity.getY());
-//		}
-//		else {
-//			location = new Circle(getCenter().plus(v), getLocation().getDiameter());			
-//		}
-//		
-//	}
-	
-	/**
-	 * @pre | v != null
-	 * 
-	 * @param v
-	 */
 	public void move(Vector v) {
-		location = new Circle(getCenter().plus(v), getLocation().getDiameter());			
+		if (v == null) {
+			velocity = new Vector(-velocity.getX(), velocity.getY());
+		}
+		else {
+			location = new Circle(getCenter().plus(v), getLocation().getDiameter());			
+		}
+		
 	}
-	
-
-
 	
 	/**
 	 * LEGIT

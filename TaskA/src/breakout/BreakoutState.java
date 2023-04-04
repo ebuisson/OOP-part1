@@ -161,10 +161,10 @@ public class BreakoutState {
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {
 			boolean res = ball.hitRect(wall);
-//			if (res) {
-//				//int newX = bottomRight.getX() / 2;
-//				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
-//			}
+			if (res) {
+				int newX = bottomRight.getX() / 2;
+				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+			}
 		}
 	}
 	
@@ -173,6 +173,7 @@ public class BreakoutState {
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
 	 * 
+	 * TODO
 	 * @pre | ball != null
 	 * @post | result == null || result == ball
 	 */
@@ -197,12 +198,12 @@ public class BreakoutState {
 		for (BlockState block : blocks) {
 			boolean res = ball.hitRect( block.getLocation() );
 			if (res) {
-//				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
-//					movePaddleRight(200);
-//				}
-//				else {
-//					movePaddleLeft(200);
-//				}
+				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
+					movePaddleRight(200);
+				}
+				else {
+					movePaddleLeft(200);
+				}
 				removeBlock(block);
 			}
 		}
@@ -214,12 +215,7 @@ public class BreakoutState {
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-//		if (changed) {
-//			Vector test = new Vector (0,0);
-//			Vector newvelocity = ball.getVelocity().mirrorOver(test);
-//			ball.setVelocity(newvelocity);
-//		}
-		
+		//...
 	}
 
 	/**
@@ -361,7 +357,7 @@ public class BreakoutState {
 	/**
 	 * TODO
 	 * @post | result == (getBlocks().length == 0 && !isDead())
-	 * @inspects this
+	 * @inspects | this
 	 */
 	public boolean isWon() {
 		return getBlocks().length == 0 && !isDead();
@@ -370,7 +366,7 @@ public class BreakoutState {
 	/**
 	 * TODO
 	 * @post | result == (getBalls().length == 0)
-	 * @inspects this
+	 * @inspects | this
 	 */
 	public boolean isDead() {
 		return getBalls().length == 0;

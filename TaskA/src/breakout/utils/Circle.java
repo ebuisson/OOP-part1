@@ -3,6 +3,7 @@ package breakout.utils;
 /**
  * Represents a circle in a 2-dimensional integer coordinate system. 
  *
+ * TODO spec
  * @immutable
  * @invar | getCenter() != null
  * @invar | getDiameter() >=0
@@ -10,6 +11,7 @@ package breakout.utils;
 public class Circle {
 	
 	/**
+	 * TODO spec
 	 * @invar | center != null
 	 */
 	private final Point center;
@@ -18,6 +20,7 @@ public class Circle {
 	/**
 	 * Construct a circle with a given center point and diameter.
 	 * 
+	 * TODO
 	 * @pre | center != null
 	 * @pre | center.getX() >= 0
 	 * @pre | center.getY() >= 0 
@@ -31,8 +34,8 @@ public class Circle {
 	}
 	
 	/**
+	 * TODO
 	 * @creates | result 
-	 * //? TODO
 	 */
 	public Point getCenter() {
 		return center;
@@ -40,8 +43,8 @@ public class Circle {
 
 	/**
 	 * Return the diameter of this circle
+	 * TODO
 	 * @creates | result 
-	 * //? TODO
 	 */ 
 	public int getDiameter() {
 		return diameter;
@@ -127,6 +130,7 @@ public class Circle {
 
 	/**
 	 * Return a circle with the given `center` and the same diameter as this one.
+	 * TODO
 	 * @immutable //?
 	 * @pre | c != null
 	 * @post | result != null

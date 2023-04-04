@@ -3,6 +3,7 @@ package breakout.utils;
 /**
  * Represents a 2-dimensional integer vector. 
  *
+ * @immutable
  */
 public class Vector {
 
@@ -16,12 +17,13 @@ public class Vector {
 
 	/**
 	 * Return a new Coordinate with given x and y coordinates.
-	 * 
 	 * TODO
+	 * @post | getX() == x
+	 * @post | getY() == y
 	 */
 	public Vector(int x, int y) {
-		this.x = 0;
-		this.y = 0;
+		this.x = x;
+		this.y = y;
 	}
 
 	@Override
@@ -61,19 +63,25 @@ public class Vector {
 
 	/**
 	 * Returns this vector multiplied by a given factor 
-	 * 
 	 * TODO
+	 * @post | result != null
+	 * @post | result.getX() == getX() * factor
+	 * @post | result.getY() == getY() * factor
 	 */
 	public Vector scaled(int factor) {
-		return null;
+		return new Vector(x * factor, y * factor);
 	}
 
 	/**
 	 * Return the Coordinate obtained by adding this vector with vector `other`.
 	 * TODO
+	 * @pre | other !=null
+	 * @post | result != null
+	 * @post | result.getX() == getX() + other.getX()
+	 * @post | result.getY() == getY() + other.getY()
 	 */
 	public Vector plus(Vector other) { 
-		return null;
+		return new Vector(x + other.x, y + other.y);
 	}
 
 	/**
