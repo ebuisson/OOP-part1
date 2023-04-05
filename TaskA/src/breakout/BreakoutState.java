@@ -68,6 +68,10 @@ public class BreakoutState {
 	 * @throws IllegalArgumentException | !(new Rect(Constants.ORIGIN,bottomRight)).contains(paddle.getLocation())
 	 * @throws IllegalArgumentException | !Arrays.stream(blocks).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
 	 * @throws IllegalArgumentException | !Arrays.stream(balls).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
+	 * @throws IllegalArgumentException | balls == null
+	 * @throws IllegalArgumentException | blocks == null
+	 * @throws IllegalArgumentException | bottomRight == null
+	 * @throws IllegalArgumentException | paddle == null
 	 * @post | Arrays.equals(getBalls(),balls)
 	 * @post | Arrays.equals(getBlocks(),blocks)
 	 * @post | getBottomRight().equals(bottomRight)
@@ -81,6 +85,11 @@ public class BreakoutState {
 		if(!Arrays.stream(blocks).allMatch(b -> getFieldInternal().contains(b.getLocation()))) throw new IllegalArgumentException();
 		if(!Arrays.stream(balls).allMatch(b -> getFieldInternal().contains(b.getLocation()))) throw new IllegalArgumentException();
 	
+		if( balls == null) throw new IllegalArgumentException();
+		if( blocks == null) throw new IllegalArgumentException();
+		if( bottomRight == null) throw new IllegalArgumentException();
+		if( paddle == null) throw new IllegalArgumentException();
+		
 	    this.balls= new Ball[balls.length];
 	    for (int i = 0 ; i < balls.length ; i++) {
 	    	this.balls[i] = balls[i];
