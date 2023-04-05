@@ -109,7 +109,7 @@ public class Ball {
 	 * @pre | rect != null
 	 * @post | result == ((rect.collideWith(getLocation()) != null) &&
 	 *       |            (getVelocity().product(rect.collideWith(getLocation())) > 0))
-	 * @inspects this
+	 * @inspects | this
 	 */
 	public boolean collidesWith(Rect rect) {
 		Vector coldir = rect.collideWith(getLocation());
@@ -165,7 +165,7 @@ public class Ball {
 	 * LEGIT
 	 * 
 	 * @post | this.equals(result)
-	 * @creates result
+	 * @creates | result
 	 */
 	public Ball reproduce() {
 		return new Ball( getLocation() , getVelocity() );

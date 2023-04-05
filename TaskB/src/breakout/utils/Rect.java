@@ -97,7 +97,7 @@ public class Rect {
 	/**
 	 * Return the rectangle obtained by subtracting an inner margin from all sides of this rectangle.
 	 * 
-	 * @pre getTopLeft().plus(new Vector(2*dx,2*dy)).isUpAndLeftFrom(getBottomRight())
+	 * @pre | getTopLeft().plus(new Vector(2*dx,2*dy)).isUpAndLeftFrom(getBottomRight())
 	 * @post | result != null
 	 * @post | result.getTopLeft().equals(getTopLeft().plus(new Vector(dx,dy)))
 	 * @post | result.getBottomRight().equals(getBottomRight().minus(new Vector(dx,dy)))
@@ -111,7 +111,7 @@ public class Rect {
 	/**
 	 * Return the rectangle obtained by subtracting an inner margin from all sides of this rectangle.
 	 * 
-	 * @pre getTopLeft().plus(new Vector(2*d,2*d)).isUpAndLeftFrom(getBottomRight())
+	 * @pre | getTopLeft().plus(new Vector(2*d,2*d)).isUpAndLeftFrom(getBottomRight())
 	 * @post | result != null
 	 * @post | result.getTopLeft().equals(getTopLeft().plus(new Vector(d,d)))
 	 * @post | result.getBottomRight().equals(getBottomRight().minus(new Vector(d,d)))
@@ -137,7 +137,7 @@ public class Rect {
 	/**
 	 * Return the height of this rectangle.
 	 * 
-	 * post | getBottomRight().getX() - getTopLeft().getX()
+	 * @post | result == getBottomRight().getX() - getTopLeft().getX()
 	 */
 	public int getWidth() {
 		return bottomRight.getX() - topLeft.getX();
