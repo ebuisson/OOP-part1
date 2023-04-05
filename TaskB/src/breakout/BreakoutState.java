@@ -64,14 +64,14 @@ public class BreakoutState {
 	/**
 	 * Construct a new BreakoutState with the given balls, blocks, paddle.
 
-	 * @throws IllegalArgumentException | !Constants.ORIGIN.isUpAndLeftFrom(bottomRight)
-	 * @throws IllegalArgumentException | !(new Rect(Constants.ORIGIN,bottomRight)).contains(paddle.getLocation())
-	 * @throws IllegalArgumentException | !Arrays.stream(blocks).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
-	 * @throws IllegalArgumentException | !Arrays.stream(balls).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
 	 * @throws IllegalArgumentException | balls == null
 	 * @throws IllegalArgumentException | blocks == null
 	 * @throws IllegalArgumentException | bottomRight == null
 	 * @throws IllegalArgumentException | paddle == null
+	 * @throws IllegalArgumentException | !Constants.ORIGIN.isUpAndLeftFrom(bottomRight)
+	 * @throws IllegalArgumentException | !(new Rect(Constants.ORIGIN,bottomRight)).contains(paddle.getLocation())
+	 * @throws IllegalArgumentException | !Arrays.stream(blocks).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
+	 * @throws IllegalArgumentException | !Arrays.stream(balls).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
 	 * @post | Arrays.equals(getBalls(),balls)
 	 * @post | Arrays.equals(getBlocks(),blocks)
 	 * @post | getBottomRight().equals(bottomRight)
@@ -79,16 +79,15 @@ public class BreakoutState {
 	 */
 	public BreakoutState(Ball[] balls, BlockState[] blocks, Point bottomRight, PaddleState paddle) {
 
+		if(balls == null) throw new IllegalArgumentException();
+		if(blocks == null) throw new IllegalArgumentException();
+		if(paddle == null) throw new IllegalArgumentException();
+		if(bottomRight == null) throw new IllegalArgumentException();
 		if(!Constants.ORIGIN.isUpAndLeftFrom(bottomRight)) throw new IllegalArgumentException();
 		this.bottomRight = bottomRight;
 		if(!getFieldInternal().contains(paddle.getLocation())) throw new IllegalArgumentException();
 		if(!Arrays.stream(blocks).allMatch(b -> getFieldInternal().contains(b.getLocation()))) throw new IllegalArgumentException();
 		if(!Arrays.stream(balls).allMatch(b -> getFieldInternal().contains(b.getLocation()))) throw new IllegalArgumentException();
-	
-		if( balls == null) throw new IllegalArgumentException();
-		if( blocks == null) throw new IllegalArgumentException();
-		if( bottomRight == null) throw new IllegalArgumentException();
-		if( paddle == null) throw new IllegalArgumentException();
 		
 	    this.balls= new Ball[balls.length];
 	    for (int i = 0 ; i < balls.length ; i++) {
