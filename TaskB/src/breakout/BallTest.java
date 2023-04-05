@@ -9,14 +9,9 @@ import breakout.utils.*;
 
 class BallTest {
 
-	//Point p11;
 	Point p05;
 	Point p38;
-	//Point pm14;
-	
-	//Rect r1138;
-	//Rect rm1438;
-	
+
 	Vector v1010;
 	Vector v2020;
 	
@@ -26,12 +21,8 @@ class BallTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		//p11 = new Point(1,1);
 		p05 = new Point(0,5);
 		p38 = new Point(3,8);
-		//pm14 = new Point(-1,4);
-		//r1138 = new Rect(p11,p38);
-		//rm1438 = new Rect(pm14,p38);
 		c052 = new Circle(p05,2);
 		c389 = new Circle(p38,9);
 		v1010 = new Vector(10,10);
