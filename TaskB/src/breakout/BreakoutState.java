@@ -107,7 +107,7 @@ public class BreakoutState {
 	 * Return the balls of this BreakoutState.
 	 */
 	public Ball[] getBalls() {
-		return balls;
+		return balls.clone();
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class BreakoutState {
 	 * @creates | result
 	 */
 	public BlockState[] getBlocks() {
-		return blocks;
+		return blocks.clone();
 	}
 
 	/**

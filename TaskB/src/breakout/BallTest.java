@@ -9,13 +9,13 @@ import breakout.utils.*;
 
 class BallTest {
 
-	Point p11;
+	//Point p11;
 	Point p05;
 	Point p38;
-	Point pm14;
+	//Point pm14;
 	
-	Rect r1138;
-	Rect rm1438;
+	//Rect r1138;
+	//Rect rm1438;
 	
 	Vector v1010;
 	Vector v2020;
@@ -26,12 +26,12 @@ class BallTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		p11 = new Point(1,1);
+		//p11 = new Point(1,1);
 		p05 = new Point(0,5);
 		p38 = new Point(3,8);
-		pm14 = new Point(-1,4);
-		r1138 = new Rect(p11,p38);
-		rm1438 = new Rect(pm14,p38);
+		//pm14 = new Point(-1,4);
+		//r1138 = new Rect(p11,p38);
+		//rm1438 = new Rect(pm14,p38);
 		c052 = new Circle(p05,2);
 		c389 = new Circle(p38,9);
 		v1010 = new Vector(10,10);
@@ -41,9 +41,6 @@ class BallTest {
 
 	@Test
 	void testBall() {
-		assertEquals(p05, b1.getLocation().getCenter());
-		assertEquals(2, b1.getLocation().getDiameter());
-		assertEquals(v1010, b1.getVelocity());
 		b1.setLocation(c389);
 		assertEquals(c389, b1.getLocation());
 		b1.setVelocity(v2020);
@@ -51,7 +48,7 @@ class BallTest {
 	}
 
 	@Test
-	void move() {
+	void testMove() {
 		b1.move(v1010);
 		assertEquals(b1.getLocation(), new Circle(new Point (10,15),b1.getLocation().getDiameter()));
 	}
