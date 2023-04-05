@@ -136,7 +136,7 @@ public class BreakoutState {
 	public void tossPaddleColor() {
 		Random rand = new Random();
 		int randInt = rand.nextInt( paddle.getPossibleColors().length );
-		curPaddleColor = Color.pink;
+		curPaddleColor = paddle.getPossibleColors()[randInt];
 	}
 
 	/**
@@ -223,7 +223,9 @@ public class BreakoutState {
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-		//...
+		if (changed) {
+			tossPaddleColor();
+		}
 	}
 
 	/**
