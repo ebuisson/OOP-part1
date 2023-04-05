@@ -168,7 +168,7 @@ public class BreakoutState {
 	
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {
-			boolean res = ball.hitRect(wall);
+			ball.hitRect(wall);
 //			if (res) {
 //				int newX = bottomRight.getX() / 2;
 //				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );

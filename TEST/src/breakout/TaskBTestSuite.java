@@ -28,8 +28,10 @@ class TaskBTestSuite {
 	private BlockState ablock;
 	private BlockState[] someblocks;
 	private Ball aball;
+	private Ball bball;
 	private Ball[] someballs;
 	private PaddleState apad;
+	private BreakoutState state;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -56,7 +58,14 @@ class TaskBTestSuite {
 						new Point(BR.getX() / 2 , Constants.HEIGHT / 2)
 						, Constants.INIT_BALL_DIAMETER)
 					, Constants.INIT_BALL_VELOCITY);
+		bball = new Ball(
+					new Circle(
+						new Point(0 , Constants.HEIGHT / 2)
+						, Constants.INIT_BALL_DIAMETER)
+					, Constants.INIT_BALL_VELOCITY);
 		someballs = new Ball[] { aball };
+		state = new BreakoutState(someballs, someblocks, BR, apad);
+		
 	}
 
 //	@Test
@@ -70,9 +79,44 @@ class TaskBTestSuite {
 //      abreakoutState.tickDuring( 200 );
 //	}
 	
+//	@Test moveTest() {
+//		
+//	}
+	
+	@Test 
+	void testGetBalls() {
+		assertNotSame(someballs, state.getBalls());
+	}
+	
+	@Test
+	void testGetBlocks() {
+		assertNotSame(someblocks, state.getBlocks());
+	}
+	
+	@Test
+	void testPaddleColor() {
+		assertEquals(Constants.TYPICAL_PADDLE_COLORS(),apad.getPossibleColors());
+		assertFalse(state.getCurPaddleColor() == Color.pink);
+	}
+	
+//	@Test
+//	void testTossPaddleColor() {
+//		
+//	}
+	
+//	@Test
+//	void testBounceWalls() {
+//		assertEquals(state.bounceWalls(bball)
+//		
+//	}
+//	
+//	@Test
+//	void testCollideBallPadde() {
+//		
+//	}
+	
 	@Test
 	void dummyTest() {
-		
 		assertEquals( 35, aball.dummy() );
 	}
 	
