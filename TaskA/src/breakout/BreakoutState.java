@@ -223,7 +223,9 @@ public class BreakoutState {
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-		//...
+		if (changed) {
+			tossPaddleColor();
+		}
 	}
 
 	/**

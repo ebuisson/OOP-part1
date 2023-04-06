@@ -26,9 +26,12 @@ class TaskBTestSuite {
 
 	private Point BR;
 	private BlockState ablock;
+	private BlockState bblock;
 	private BlockState[] someblocks;
 	private Ball aball;
 	private Ball bball;
+	private Ball cball;
+	private Ball dball;
 	private Ball[] someballs;
 	private PaddleState apad;
 	private BreakoutState state;
@@ -46,6 +49,8 @@ class TaskBTestSuite {
 		
 		ablock = new BlockState(
 				new Rect( Constants.ORIGIN, new Point(Constants.BLOCK_WIDTH,Constants.BLOCK_HEIGHT)) );
+		bblock = new BlockState(
+				new Rect( new Point(10000,0), new Point(Constants.BLOCK_WIDTH+1000,Constants.BLOCK_HEIGHT)) );
 		someblocks = new BlockState[] { ablock };
 		
 		apad = new PaddleState(
@@ -60,10 +65,20 @@ class TaskBTestSuite {
 					, Constants.INIT_BALL_VELOCITY);
 		bball = new Ball(
 					new Circle(
-						new Point(0 , Constants.HEIGHT / 2)
+						new Point(6000 , 700)
 						, Constants.INIT_BALL_DIAMETER)
-					, Constants.INIT_BALL_VELOCITY);
-		someballs = new Ball[] { aball };
+					, new Vector(0,-350));
+		cball = new Ball(
+				new Circle(
+					new Point(2500 , 4500)
+					, Constants.INIT_BALL_DIAMETER)
+				, new Vector(0,-100));
+		dball = new Ball(
+				new Circle(
+						new Point( Constants.WIDTH / 2, 21000)
+						, Constants.INIT_BALL_DIAMETER)
+					, new Vector(0,100));
+		someballs = new Ball[] { aball, bball, cball, dball };
 		state = new BreakoutState(someballs, someblocks, BR, apad);
 		
 	}
@@ -83,11 +98,6 @@ class TaskBTestSuite {
 //		
 //	}
 	
-//	@Test remove (both tasks pass)
-//	void testGetBalls() {
-//		assertNotSame(someballs, state.getBalls());
-//	}
-	
 	@Test
 	void testGetBlocks() {
 		assertNotSame(someblocks, state.getBlocks());
@@ -95,25 +105,43 @@ class TaskBTestSuite {
 	
 	@Test
 	void testPaddleColor() {
-		assertEquals(Constants.TYPICAL_PADDLE_COLORS()[0],apad.getPossibleColors()[0]);
+		state.tossPaddleColor();
+		assertTrue(Arrays.stream(Constants.TYPICAL_PADDLE_COLORS()).anyMatch(c -> state.getCurPaddleColor().equals(c)));
 		assertFalse(state.getCurPaddleColor() == Color.pink);
 	}
 	
-//	@Test
-//	void testTossPaddleColor() {
-//		
-//	}
+	@Test
+	void testTossPaddleColor() {
+		state.tossPaddleColor();
+		Color old = state.getCurPaddleColor();
+		state.tossPaddleColor();
+		//Color update = state.getCurPaddleColor();
+		assertNotSame(old, state.getCurPaddleColor());
+	}
 	
-//	@Test
-//	void testBounceWalls() {
-//		assertEquals(state.bounceWalls(bball)
-//		
-//	}
-//	
-//	@Test
-//	void testCollideBallPadde() {
-//		
-//	}
+	@Test
+	void testBounceWalls() {
+		Vector oldVelocity = bball.getVelocity();
+		Circle oldLocation = bball.getLocation();
+		state.tickDuring(1);
+		assertEquals(oldLocation.getCenter().plus(oldVelocity),bball.getLocation().getCenter());
+		
+	}
+	
+	@Test
+	void testCollideBallBlocks() {
+		Point oldLocation = apad.getCenter();
+		state.tickDuring(10);
+		assertEquals(oldLocation, state.getPaddle().getCenter());
+	}
+	
+	@Test //not needed?
+	void testCollideBallPaddle() {
+		Color old = state.getCurPaddleColor();
+		state.tickDuring(10);
+		assertNotSame(old, state.getCurPaddleColor());
+		
+	}
 	
 	@Test
 	void dummyTest() {
