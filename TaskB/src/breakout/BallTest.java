@@ -31,6 +31,14 @@ class BallTest {
 	}
 
 	@Test
+	void testThrows() {
+		assertThrows(IllegalArgumentException.class, 
+				() -> new Ball(null,v1010) );
+		assertThrows(IllegalArgumentException.class, 
+				() -> new Ball(c052,null) );
+	}
+	
+	@Test
 	void testBall() {
 		b1.setLocation(c389);
 		assertEquals(c389, b1.getLocation());

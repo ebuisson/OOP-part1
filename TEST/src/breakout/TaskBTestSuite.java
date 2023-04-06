@@ -1,6 +1,7 @@
 package breakout;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
@@ -93,10 +94,12 @@ class TaskBTestSuite {
 //      assertNotSame( unexpected, actual );
 //      abreakoutState.tickDuring( 200 );
 //	}
+
 	
-//	@Test moveTest() {
-//		
-//	}
+	@Test
+	void testMove() {
+		assertFalse(aball.move(null) == ;
+	}
 	
 	@Test
 	void testGetBlocks() {
@@ -115,7 +118,6 @@ class TaskBTestSuite {
 		state.tossPaddleColor();
 		Color old = state.getCurPaddleColor();
 		state.tossPaddleColor();
-		//Color update = state.getCurPaddleColor();
 		assertNotSame(old, state.getCurPaddleColor());
 	}
 	
@@ -140,8 +142,9 @@ class TaskBTestSuite {
 		Color old = state.getCurPaddleColor();
 		state.tickDuring(10);
 		assertNotSame(old, state.getCurPaddleColor());
-		
 	}
+	
+	
 	
 	@Test
 	void dummyTest() {

@@ -63,7 +63,7 @@ public class BreakoutState {
 
 	/**
 	 * Construct a new BreakoutState with the given balls, blocks, paddle.
-
+	 *
 	 * @throws IllegalArgumentException | balls == null
 	 * @throws IllegalArgumentException | blocks == null
 	 * @throws IllegalArgumentException | bottomRight == null
@@ -169,12 +169,10 @@ public class BreakoutState {
 	
 	/**
 	 * @pre | ball != null
-//	 * @post ball.getVelocity() == old(ball.getVelocity()) ||
-//	 * 			| (ball.getVelocity().getX() == -old(ball).getVelocity().getX()) && (ball.getVelocity().getY() == old(ball).getVelocity().getY()) ||
-//	 * 			| (ball.getVelocity().getY() == -old(ball).getVelocity().getY()) && (ball.getVelocity().getX() == old(ball).getVelocity().getX())
-	 * @post | ball.getVelocity() == old(ball).getVelocity() ||
-	 * 			| (ball.getVelocity().getX() != old(ball).getVelocity().getX()) ||
-	 * 			| (ball.getVelocity().getY() != old(ball).getVelocity().getY())
+//	 * @post | ball.getVelocity() != old(ball.getVelocity()) ?
+//	 * 			| (ball.getVelocity().getX() == -old(ball.getVelocity().getX())) ||
+//	 * 			| (ball.getVelocity().getY() == -old(ball.getVelocity().getY())) : ball.getLocation() == old(ball.getLocation())
+	 * @post | ball.getVelocity() != old(ball.getVelocity()) || ball.getVelocity() == old(ball.getVelocity())
 //	 * @post | ball.getLocation() == old(ball.getLocation())
 	 */
 	private void bounceWalls(Ball ball) {

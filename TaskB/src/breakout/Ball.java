@@ -25,10 +25,16 @@ public class Ball {
 	
 	/**
 	 * Construct a new ball at a given `location`, with a given `velocity`.
+	 * 
+	 * @throws IllegalArgumentException | location == null
+	 * @throws IllegalArgumentException | velocity == null
  	 * @post | getLocation().equals(location)
  	 * @post | getVelocity().equals(velocity)
 	 */
 	public Ball(Circle location, Vector velocity) {
+		if(location == null) throw new IllegalArgumentException();
+		if(velocity == null) throw new IllegalArgumentException();
+		
 		this.location = new Circle( location.getCenter() , location.getDiameter());
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
@@ -69,6 +75,8 @@ public class Ball {
 	
 	/**
 	 * @pre | v != null
+	 * @post | getLocation().getCenter().equals(old(getLocation()).getCenter().plus(v))
+	 * @post | getLocation().getDiameter() == old(getLocation()).getDiameter()
 	 * 
 	 */
 	public void move(Vector v) {
