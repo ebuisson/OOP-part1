@@ -220,10 +220,16 @@ public class BreakoutState {
 	/**
 	 * If ball collides with paddle, velocity of ball is reflected horizontally.
 	 * TODO
+	 * @pre  | ball != null && paddleVel != null 
+	 * @post If the ball collides with the paddle, the horizontal velocity of the ball is 
+	 *       negated, i.e. the sign is flipped. If the ball does not collide with the paddle, 
+	 *       the horizontal velocity of the ball remains unchanged. 
+	 * 	     | ball.getVelocity().getX() == -old(ball.getVelocity().getX())
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-		//...
+	    // check post-condition
+
 	}
 
 	/**
