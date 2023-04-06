@@ -132,6 +132,7 @@ public class BreakoutState {
 	
 	/**
 	 * randomly choose color within paddle.getPossibleColors() 
+	 * specs
 	 */
 	public void tossPaddleColor() {
 		Random rand = new Random();
@@ -218,8 +219,15 @@ public class BreakoutState {
 	}
 
 	/**
-	 * If ball collides with paddle, velocity of ball is reflected horizontally.
+	 * If the ball collides with the paddle, the vertical velocity of the ball is 
+	 * flipped and the horizontal velocity is scaled by paddle vel.
 	 * TODO
+	 * @pre  | ball != null && paddleVel != null 
+	 * @post | ball.hitPaddle(paddle.getLocation(), paddleVel) == true ? ball.getVelocity().getX() == old(ball.getVelocity()).plus(paddleVel.scaledDiv(5)).getX()
+	 * 		| : ball.getVelocity().getX() == old(ball.getVelocity()).getX()
+	 * @post | ball.hitPaddle(paddle.getLocation(), paddleVel) == true ? ball.getVelocity().getY() == -old(ball).getVelocity().getY()
+	 * 		| : ball.getVelocity().getY() == old(ball).getVelocity().getY()
+	 * @post | ball.hitPaddle(paddle.getLocation(), paddleVel) == true ? Arrays.stream(Constants.TYPICAL_PADDLE_COLORS()).anyMatch(c -> getCurPaddleColor().equals(c)) : getCurPaddleColor() == old(getCurPaddleColor())
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
