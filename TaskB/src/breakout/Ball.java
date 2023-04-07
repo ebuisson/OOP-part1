@@ -79,11 +79,13 @@ public class Ball {
 
 	
 	/**
-	 * @pre | v != null
+	 * 
+	 * @throws IllegalArgumentException | v == null
 	 * @post | getLocation().getDiameter() == old(getLocation()).getDiameter()
 	 * 
 	 */
 	public void move(Vector v) {
+		if(v == null) throw new IllegalArgumentException();
 		location = new Circle(getCenter().plus(v), getLocation().getDiameter());			
 	}
 	

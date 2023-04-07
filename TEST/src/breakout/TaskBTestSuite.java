@@ -100,7 +100,11 @@ class TaskBTestSuite {
 //      abreakoutState.tickDuring( 200 );
 //	}
 
-
+	@Test
+	void testvoidMove() {
+		assertThrows(IllegalArgumentException.class, 
+				() -> bball.move(null));
+	}
 	
 	@Test
 	void testGetBlocksCloned() {
@@ -116,7 +120,7 @@ class TaskBTestSuite {
 	
 	
 	@Test
-	void testMovePaddleLeftslowerthanRight() {
+	void testMovePaddleLeft() {
 		state.movePaddleLeft(20);
 		assertEquals(state.getPaddle().getCenter(), new Point(apad.getCenter().getX()-300,apad.getCenter().getY()));
 	}
