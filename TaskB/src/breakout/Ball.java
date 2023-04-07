@@ -5,7 +5,6 @@ import breakout.utils.Point;
 import breakout.utils.Rect;
 import breakout.utils.Vector;
 
-//Ball constructor needs defensive programming
 
 /**
  * Represents the state of a ball in the breakout game.
@@ -57,9 +56,8 @@ public class Ball {
 	/**
 	 * @mutates | this
 	 * @pre | location != null
-//	 * @post | getLocation().getCenter() == location.getCenter()
-//	 * @post | getLocation().getDiameter() == location.getDiameter()
-//	 * @post | getVelocity() == old(getVelocity())
+	 * @post | getLocation().getCenter() == location.getCenter()
+	 * @post | getLocation().getDiameter() == location.getDiameter()
 	 */
 	public void setLocation(Circle location) {
 		this.location = new Circle( location.getCenter() , location.getDiameter());
@@ -68,28 +66,16 @@ public class Ball {
 	/**
 	 * @mutates | this
 	 * @pre | velocity != null
-	 * @post | getLocation() == old(getLocation())
 	 * @post | getVelocity().getX() == velocity.getX()
 	 * @post | getVelocity().getY() == velocity.getY()
 	 */
 	public void setVelocity(Vector velocity) {
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
-	
-//incorrectly implemented
-//	public void move(Vector v) {
-//		if (v == null) {
-//			velocity = new Vector(-velocity.getX(), velocity.getY());
-//		}
-//		else {
-//			location = new Circle(getCenter().plus(v), getLocation().getDiameter());			
-//		}
-//		
-//	}
+
 	
 	/**
 	 * @pre | v != null
-//	 * @post | getLocation().getCenter().equals(old(getLocation()).getCenter().plus(v))
 	 * @post | getLocation().getDiameter() == old(getLocation()).getDiameter()
 	 * 
 	 */

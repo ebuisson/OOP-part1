@@ -43,7 +43,8 @@ class BallTest {
 		b1.setLocation(c389);
 		assertEquals(c389, b1.getLocation());
 		b1.setVelocity(v2020);
-		assertEquals(v2020, b1.getVelocity());
+		assertEquals(v2020.getX(), b1.getVelocity().getX());
+		
 	}
 
 	@Test

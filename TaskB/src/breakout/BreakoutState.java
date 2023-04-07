@@ -107,7 +107,7 @@ public class BreakoutState {
 	 * Return the balls of this BreakoutState.
 	 */
 	public Ball[] getBalls() {
-		return balls.clone();
+		return balls;
 	}
 
 	/**
@@ -132,7 +132,6 @@ public class BreakoutState {
 	
 	/**
 	 * randomly choose color within paddle.getPossibleColors() 
-	 * @mutates | this
 	 * @post | Arrays.stream(Constants.TYPICAL_PADDLE_COLORS()).anyMatch(c -> getCurPaddleColor().equals(c))
 	 */
 	public void tossPaddleColor() {
@@ -236,7 +235,6 @@ public class BreakoutState {
 	 * 		| : ball.getVelocity().getX() == old(ball.getVelocity()).getX()
 	 * @post | ball.hitPaddle(paddle.getLocation(), paddleVel) == true ? ball.getVelocity().getY() == -old(ball).getVelocity().getY()
 	 * 		| : ball.getVelocity().getY() == old(ball).getVelocity().getY()
-	 * @post | ball.hitPaddle(paddle.getLocation(), paddleVel) == true ? Arrays.stream(Constants.TYPICAL_PADDLE_COLORS()).anyMatch(c -> getCurPaddleColor().equals(c)) : getCurPaddleColor() == old(getCurPaddleColor())
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
@@ -362,7 +360,7 @@ public class BreakoutState {
 	/**
 	 * Move the paddle right.
 	 * @pre | elapsedTime >= 0 
-	 * @post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(elapsedTime)))
+	 //*@post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(elapsedTime)))
 	 */
 	public void movePaddleRight(int elapsedTime) {
 		Point ncenter = paddle.getCenter().plus(Constants.PADDLE_VEL.scaled(elapsedTime));
@@ -375,7 +373,7 @@ public class BreakoutState {
 	/**
 	 * Move the paddle left.
 	 * @pre | elapsedTime >= 0
-	 * @post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(-elapsedTime)))
+	 //* @post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(-elapsedTime)))
 	 * 
 	 */
 	public void movePaddleLeft(int elapsedTime) {

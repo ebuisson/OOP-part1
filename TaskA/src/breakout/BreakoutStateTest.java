@@ -66,7 +66,6 @@ class BreakoutStateTest {
 		state.tossPaddleColor();
 		assertEquals(Color.pink, state.getCurPaddleColor());
 	}
-
 	
 	@Test
 	void testMovePaddleLeft() {

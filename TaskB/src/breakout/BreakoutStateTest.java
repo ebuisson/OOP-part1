@@ -3,29 +3,27 @@ package breakout;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import breakout.utils.Circle;
-import breakout.utils.Point;
-import breakout.utils.Rect;
-import breakout.utils.Vector;
-import breakout.BreakoutState;
+import breakout.utils.*;
 
 class BreakoutStateTest {
 	
-	private Point BR;
-	private BlockState ablock;
-	private BlockState bblock;
-	private BlockState[] someblocks;
-	private Ball aball;
-	private Ball bball;
-	private Ball cball;
-	private Ball dball;
-	private Ball[] someballs;
-	private PaddleState apad;
-	private BreakoutState state;
+	Point BR;
+	BlockState ablock;
+	BlockState bblock;
+	BlockState[] someblocks;
+	Ball aball;
+	Ball bball;
+	Ball cball;
+	Ball dball;
+	Ball[] someballs;
+	PaddleState apad;
+	BreakoutState state;
+	BreakoutState hitState;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -36,7 +34,7 @@ class BreakoutStateTest {
 				new Rect( new Point(10000,0), new Point(15000,3750)) );
 		someblocks = new BlockState[] { ablock };
 		apad = new PaddleState(
-				new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4),
+				new Point( 28000, 28000),
 				Constants.TYPICAL_PADDLE_COLORS());
 		aball = new Ball(
 					new Circle(
@@ -55,49 +53,34 @@ class BreakoutStateTest {
 					, new Vector(0,-100));
 		dball = new Ball(
 					new Circle(
-						new Point( 25000, 21000)
-						, Constants.INIT_BALL_DIAMETER)
-					, new Vector(0,100));
-		someballs = new Ball[] { aball, bball, cball, dball };
+						new Point( 28000, 27100)
+						, 100)
+					, new Vector(30,30));
+		someballs = new Ball[] { aball};
 		state = new BreakoutState(someballs, someblocks, BR, apad);
+		hitState = new BreakoutState(new Ball[] {dball}, someblocks, BR, apad);
 		
 	}
 	
-//	@Test
-//	void testTossPaddleColor() {
-//		assertEquals(state.getCurPaddleColor(), pad.getPossibleColors()[0]);
-//	}
-
-//	@Test
-//	void testRemoveDead() {
-//		assertEquals(null, state1.removeDead(bm1));
-//		
-//	}
 	
 	@Test
-	void testBounceWalls() {
-		Vector oldVelocity = dball.getVelocity();
-		Circle oldLocation = dball.getLocation();
-		state.tickDuring(5);
-//		assertEquals(oldLocation.getCenter().plus(oldVelocity),aball.getLocation().getCenter());
-//		assertEquals(oldVelocity, new Vector(0,-350));
-		//assertEquals(oldLocation, new Circle( new Point( Constants.WIDTH / 2, 21000)
-		//		, Constants.INIT_BALL_DIAMETER));
-		assertEquals(oldLocation,new Point( 500000, 21000));
-		//assertEquals(apad.getCenter(),new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4));
+	void testTossPaddleColor() {
+		state.tossPaddleColor();
+		assertTrue(Arrays.stream(Constants.TYPICAL_PADDLE_COLORS()).anyMatch(c -> state.getCurPaddleColor().equals(c)));
+	}
+
+	
+	@Test
+	void testMovePaddleLeft() {
+		state.movePaddleLeft(20);
+		assertEquals(state.getPaddle().getCenter(), new Point(apad.getCenter().getX()-300,apad.getCenter().getY()));
 	}
 	
-//	@Test
-//	void testMovePaddleRight() {
-//		//state.movePaddleRight(1); .plus(Constants.PADDLE_VEL.scaled(1))
-//		assertEquals(p58, pad.getCenter().getX());
-//	}
-//	
-//	@Test
-//	void testMovePaddleLeft() {
-//		//state.movePaddleRight(1); .plus(Constants.PADDLE_VEL.scaled(1))
-//		assertEquals(p58, pad.getCenter().getX());
-//	}
+	@Test
+	void testMovePaddleRight() {
+		state.movePaddleRight(20);
+		assertEquals(state.getPaddle().getCenter(), new Point(apad.getCenter().getX()+300,apad.getCenter().getY()));
+	}
 	
 
 }
