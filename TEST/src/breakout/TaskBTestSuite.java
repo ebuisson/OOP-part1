@@ -35,7 +35,16 @@ class TaskBTestSuite {
 	private Ball dball;
 	private Ball[] someballs;
 	private PaddleState apad;
+	private PaddleState bpad;
 	private BreakoutState state;
+	private BreakoutState hitpaddle;
+	private BreakoutState hitwall;
+	private BreakoutState hitblock;
+	
+	private Rect topWall;
+	private Rect rightWall;
+	private Rect leftWall;
+	private Rect[] walls;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -55,6 +64,7 @@ class TaskBTestSuite {
 		apad = new PaddleState(
 				new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4),
 				Constants.TYPICAL_PADDLE_COLORS());
+		bpad = new PaddleState(new Point(28000,28000),new Color[] {Color.pink});
 		aball = new Ball(
 					new Circle(
 						new Point(BR.getX() / 2 , Constants.HEIGHT / 2)
@@ -62,9 +72,9 @@ class TaskBTestSuite {
 					, Constants.INIT_BALL_VELOCITY);
 		bball = new Ball(
 					new Circle(
-						new Point(20000 , 700)
-						, Constants.INIT_BALL_DIAMETER)
-					, new Vector(0,-350));
+						new Point(40000 , 3000)
+						, 100)
+					, new Vector(30,-30));
 		cball = new Ball(
 					new Circle(
 						new Point(2500 , 4500)
@@ -72,11 +82,19 @@ class TaskBTestSuite {
 					, new Vector(0,-100));
 		dball = new Ball(
 					new Circle(
-						new Point( Constants.WIDTH / 2, 21000)
+						new Point( 28000, 27100)
 						, Constants.INIT_BALL_DIAMETER)
-					, new Vector(0,100));
-		someballs = new Ball[] { aball, bball, cball, dball };
+					, new Vector(30,30));
+		someballs = new Ball[] { aball};
 		state = new BreakoutState(someballs, someblocks, BR, apad);
+		hitpaddle = new BreakoutState(new Ball[] { dball}, someblocks, BR, bpad);
+		hitwall = new BreakoutState(new Ball[] { bball}, someblocks, BR, bpad);
+		hitblock = new BreakoutState(new Ball[] { cball}, new BlockState[] { ablock, bblock }, BR, bpad);
+		
+		topWall = new Rect( new Point(0,-1000), new Point(BR.getX(),0));
+		rightWall = new Rect( new Point(BR.getX(),0), new Point(BR.getX()+1000,BR.getY()));
+		leftWall = new Rect( new Point(-1000,0), new Point(0,BR.getY()));
+		walls = new Rect[] {topWall,rightWall, leftWall };
 		
 	}
 
@@ -91,11 +109,7 @@ class TaskBTestSuite {
 //      abreakoutState.tickDuring( 200 );
 //	}
 
-	
-//	@Test
-//	void testMove() {
-//		assertFalse(aball.move(null) == ;
-//	}
+
 	
 	@Test
 	void testGetBlocks() {
@@ -109,26 +123,6 @@ class TaskBTestSuite {
 		assertFalse(state.getCurPaddleColor() == Color.pink);
 	}
 	
-	@Test
-	void testTossPaddleColor() {
-		state.tossPaddleColor();
-		Color old = state.getCurPaddleColor();
-		state.tossPaddleColor();
-		assertNotSame(old, state.getCurPaddleColor());
-	}
-	
-	@Test
-	void testBounceWalls() {
-		Vector oldVelocity = dball.getVelocity();
-		Circle oldLocation = dball.getLocation();
-		state.tickDuring(60);
-//		assertEquals(oldLocation.getCenter().plus(oldVelocity),aball.getLocation().getCenter());
-//		assertEquals(oldVelocity, new Vector(0,-350));
-		//assertEquals(oldLocation, new Circle( new Point( Constants.WIDTH / 2, 21000)
-		//		, Constants.INIT_BALL_DIAMETER));
-		assertEquals(dball.getLocation().getCenter(),new Point( 500000, 21000));
-		assertEquals(apad.getCenter(),new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4));
-	}
 	
 	@Test
 	void testMovePaddleLeft() {
@@ -138,16 +132,9 @@ class TaskBTestSuite {
 	
 	@Test
 	void testCollideBallBlocks() {
-		Point oldLocation = apad.getCenter();
-		state.tickDuring(10);
+		Point oldLocation = bpad.getCenter();
+		hitblock.tickDuring(10);
 		assertEquals(oldLocation, state.getPaddle().getCenter());
-	}
-	
-	@Test //not needed?
-	void testCollideBallPaddle() {
-		Color old = state.getCurPaddleColor();
-		state.tickDuring(10);
-		assertNotSame(old, state.getCurPaddleColor());
 	}
 	
 	

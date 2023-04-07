@@ -167,6 +167,7 @@ public class BreakoutState {
 		return getFieldInternal();
 	}
 	
+	
 	/**
 	 * @pre | ball != null
 //	 * @post | ball.getVelocity() != old(ball.getVelocity()) ?
@@ -317,6 +318,15 @@ public class BreakoutState {
 			}
 		}
 	}
+	
+	/**
+	 * LEGIT
+	 */
+	private void bounceBallsOnWalls() {
+		for(int i = 0; i < balls.length; ++i) {
+			bounceWalls(balls[i]);
+		}
+	}
 
 	/**
 	 * LEGIT
@@ -338,14 +348,7 @@ public class BreakoutState {
 		}
 	}
 
-	/**
-	 * LEGIT
-	 */
-	private void bounceBallsOnWalls() {
-		for(int i = 0; i < balls.length; ++i) {
-			bounceWalls(balls[i]);
-		}
-	}
+
 
 	/**
 	 * LEGIT
