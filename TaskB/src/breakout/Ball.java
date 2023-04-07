@@ -41,6 +41,8 @@ public class Ball {
 	
 	/**
 	 * Return this ball's location.
+	 * @creates | result
+	 * @post | result != null
 	 */
 	public Circle getLocation() {
 		return new Circle( location.getCenter() , location.getDiameter());
@@ -48,6 +50,8 @@ public class Ball {
 
 	/**
 	 * Return this ball's velocity.
+	 * @creates | result
+	 * @post | result !=null
 	 */
 	public Vector getVelocity() {
 		return new Vector( velocity.getX() , velocity.getY() );

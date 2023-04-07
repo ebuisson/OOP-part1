@@ -179,10 +179,6 @@ public class BreakoutState {
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {
 			ball.hitRect(wall);
-//			if (res) {
-//				int newX = bottomRight.getX() / 2;
-//				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
-//			}
 		}
 	}
 	
@@ -216,12 +212,6 @@ public class BreakoutState {
 		for (BlockState block : blocks) {
 			boolean res = ball.hitRect( block.getLocation() );
 			if (res) {
-//				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
-//					movePaddleRight(200);
-//				}
-//				else {
-//					movePaddleLeft(200);
-//				}
 				removeBlock(block);
 			}
 		}
@@ -363,7 +353,8 @@ public class BreakoutState {
 	/**
 	 * Move the paddle right.
 	 * @pre | elapsedTime >= 0 
-	 //*@post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(elapsedTime)))
+	 * @post | old(getPaddle().getCenter().getX()) < getPaddle().getCenter().getX()
+	 * @post | old(getPaddle().getCenter().getY()) == getPaddle().getCenter().getY()
 	 */
 	public void movePaddleRight(int elapsedTime) {
 		Point ncenter = paddle.getCenter().plus(Constants.PADDLE_VEL.scaled(elapsedTime));
@@ -376,7 +367,8 @@ public class BreakoutState {
 	/**
 	 * Move the paddle left.
 	 * @pre | elapsedTime >= 0
-	 //* @post | getPaddle().getCenter() == getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(old(getPaddle().getCenter()).plus(Constants.PADDLE_VEL.scaled(-elapsedTime)))
+	 * @post | old(getPaddle().getCenter().getX()) > getPaddle().getCenter().getX()
+	 * @post | old(getPaddle().getCenter().getY()) == getPaddle().getCenter().getY()
 	 * 
 	 */
 	public void movePaddleLeft(int elapsedTime) {

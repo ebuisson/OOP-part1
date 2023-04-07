@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import breakout.utils.Vector;
-import breakout.utils.Circle;
-import breakout.utils.Point;
-
 class CircleTest {
 	
 	Point p11;

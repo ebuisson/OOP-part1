@@ -38,13 +38,9 @@ class TaskBTestSuite {
 	private PaddleState bpad;
 	private BreakoutState state;
 	private BreakoutState hitpaddle;
-	private BreakoutState hitwall;
+
 	private BreakoutState hitblock;
-	
-	private Rect topWall;
-	private Rect rightWall;
-	private Rect leftWall;
-	private Rect[] walls;
+
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -88,13 +84,8 @@ class TaskBTestSuite {
 		someballs = new Ball[] { aball};
 		state = new BreakoutState(someballs, someblocks, BR, apad);
 		hitpaddle = new BreakoutState(new Ball[] { dball}, someblocks, BR, bpad);
-		hitwall = new BreakoutState(new Ball[] { bball}, someblocks, BR, bpad);
 		hitblock = new BreakoutState(new Ball[] { cball}, new BlockState[] { ablock, bblock }, BR, bpad);
-		
-		topWall = new Rect( new Point(0,-1000), new Point(BR.getX(),0));
-		rightWall = new Rect( new Point(BR.getX(),0), new Point(BR.getX()+1000,BR.getY()));
-		leftWall = new Rect( new Point(-1000,0), new Point(0,BR.getY()));
-		walls = new Rect[] {topWall,rightWall, leftWall };
+
 		
 	}
 
