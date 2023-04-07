@@ -47,35 +47,31 @@ class TaskBTestSuite {
 	 */
 	void setUp() {
 		BR = new Point(Constants.WIDTH, Constants.HEIGHT);
-		
 		ablock = new BlockState(
 				new Rect( Constants.ORIGIN, new Point(Constants.BLOCK_WIDTH,Constants.BLOCK_HEIGHT)) );
 		bblock = new BlockState(
 				new Rect( new Point(10000,0), new Point(Constants.BLOCK_WIDTH+1000,Constants.BLOCK_HEIGHT)) );
 		someblocks = new BlockState[] { ablock };
-		
 		apad = new PaddleState(
 				new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4),
 				Constants.TYPICAL_PADDLE_COLORS());
-		
-		aball =
-				new Ball(
+		aball = new Ball(
 					new Circle(
 						new Point(BR.getX() / 2 , Constants.HEIGHT / 2)
 						, Constants.INIT_BALL_DIAMETER)
 					, Constants.INIT_BALL_VELOCITY);
 		bball = new Ball(
 					new Circle(
-						new Point(6000 , 700)
+						new Point(20000 , 700)
 						, Constants.INIT_BALL_DIAMETER)
 					, new Vector(0,-350));
 		cball = new Ball(
-				new Circle(
-					new Point(2500 , 4500)
-					, Constants.INIT_BALL_DIAMETER)
-				, new Vector(0,-100));
+					new Circle(
+						new Point(2500 , 4500)
+						, Constants.INIT_BALL_DIAMETER)
+					, new Vector(0,-100));
 		dball = new Ball(
-				new Circle(
+					new Circle(
 						new Point( Constants.WIDTH / 2, 21000)
 						, Constants.INIT_BALL_DIAMETER)
 					, new Vector(0,100));
@@ -96,10 +92,10 @@ class TaskBTestSuite {
 //	}
 
 	
-	@Test
-	void testMove() {
-		assertFalse(aball.move(null) == ;
-	}
+//	@Test
+//	void testMove() {
+//		assertFalse(aball.move(null) == ;
+//	}
 	
 	@Test
 	void testGetBlocks() {
@@ -123,11 +119,21 @@ class TaskBTestSuite {
 	
 	@Test
 	void testBounceWalls() {
-		Vector oldVelocity = bball.getVelocity();
-		Circle oldLocation = bball.getLocation();
-		state.tickDuring(1);
-		assertEquals(oldLocation.getCenter().plus(oldVelocity),bball.getLocation().getCenter());
-		
+		Vector oldVelocity = dball.getVelocity();
+		Circle oldLocation = dball.getLocation();
+		state.tickDuring(60);
+//		assertEquals(oldLocation.getCenter().plus(oldVelocity),aball.getLocation().getCenter());
+//		assertEquals(oldVelocity, new Vector(0,-350));
+		//assertEquals(oldLocation, new Circle( new Point( Constants.WIDTH / 2, 21000)
+		//		, Constants.INIT_BALL_DIAMETER));
+		assertEquals(dball.getLocation().getCenter(),new Point( 500000, 21000));
+		assertEquals(apad.getCenter(),new Point( Constants.WIDTH / 2, (3 * Constants.HEIGHT) / 4));
+	}
+	
+	@Test
+	void testMovePaddleLeft() {
+		state.movePaddleLeft(20);
+		assertEquals(state.getPaddle().getCenter(), new Point(apad.getCenter().getX()-300,apad.getCenter().getY()));
 	}
 	
 	@Test

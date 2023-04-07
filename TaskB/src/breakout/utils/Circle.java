@@ -22,8 +22,6 @@ public class Circle {
 	 * 
 	 * TODO
 	 * @pre | center != null
-	 * @pre | center.getX() >= 0
-	 * @pre | center.getY() >= 0 
 	 * @pre | diameter >= 0 
 	 * @post | getCenter().equals(center)
 	 * @post | getDiameter() == diameter

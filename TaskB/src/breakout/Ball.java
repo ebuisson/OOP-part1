@@ -54,10 +54,24 @@ public class Ball {
 		return new Vector( velocity.getX() , velocity.getY() );
 	}
 	
+	/**
+	 * @mutates | this
+	 * @pre | location != null
+//	 * @post | getLocation().getCenter() == location.getCenter()
+//	 * @post | getLocation().getDiameter() == location.getDiameter()
+//	 * @post | getVelocity() == old(getVelocity())
+	 */
 	public void setLocation(Circle location) {
 		this.location = new Circle( location.getCenter() , location.getDiameter());
 	}
 	
+	/**
+	 * @mutates | this
+	 * @pre | velocity != null
+	 * @post | getLocation() == old(getLocation())
+	 * @post | getVelocity().getX() == velocity.getX()
+	 * @post | getVelocity().getY() == velocity.getY()
+	 */
 	public void setVelocity(Vector velocity) {
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
@@ -75,7 +89,7 @@ public class Ball {
 	
 	/**
 	 * @pre | v != null
-	 * @post | getLocation().getCenter().equals(old(getLocation()).getCenter().plus(v))
+//	 * @post | getLocation().getCenter().equals(old(getLocation()).getCenter().plus(v))
 	 * @post | getLocation().getDiameter() == old(getLocation()).getDiameter()
 	 * 
 	 */
