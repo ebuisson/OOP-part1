@@ -112,7 +112,7 @@ class TaskBTestSuite {
 
 	
 	@Test
-	void testGetBlocks() {
+	void testGetBlocksCloned() {
 		assertNotSame(someblocks, state.getBlocks());
 	}
 	
@@ -125,16 +125,16 @@ class TaskBTestSuite {
 	
 	
 	@Test
-	void testMovePaddleLeft() {
+	void testMovePaddleLeftslowerthanRight() {
 		state.movePaddleLeft(20);
 		assertEquals(state.getPaddle().getCenter(), new Point(apad.getCenter().getX()-300,apad.getCenter().getY()));
 	}
 	
 	@Test
-	void testCollideBallBlocks() {
+	void testMovePaddleonBallBlocksCollision() {
 		Point oldLocation = bpad.getCenter();
 		hitblock.tickDuring(10);
-		assertEquals(oldLocation, state.getPaddle().getCenter());
+		assertEquals(oldLocation, hitblock.getPaddle().getCenter());
 	}
 	
 	
