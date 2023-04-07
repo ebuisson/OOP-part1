@@ -1,4 +1,4 @@
 include:
-  - project: 'distrinet/education/ogp/meta/ci-resources'
+  - project: 'distrinet/education/ogp/meta/ci-resources-private'
     file:
-    - '/scripts/breakout-iter1.yml'
+    - '/scripts/correction-breakout-iter1.yml'
